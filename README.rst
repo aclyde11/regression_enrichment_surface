@@ -4,9 +4,11 @@ Regression Enrichment Surface
 
 Under dev.
 
-# How to use
+How to use
 Simple case:
 To produced average plots over some stratification (useful for dose response like data to produce results over types of cells for instance)
+
+
 .. code-block:: python
 
     trues, preds = get_predicition_data()
