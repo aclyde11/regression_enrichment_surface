@@ -43,6 +43,6 @@ setup(
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/aclyde11/regression_enrichment_surface',
-    version='0.1.0',
+    version='0.2.0',
     zip_safe=False,
 )

@@ -12,7 +12,7 @@ To produced average plots over some stratification (useful for dose response lik
 .. code-block:: python
 
     trues, preds = get_predicition_data()
-    rds_model = rds.RegressionDetectionSurface(percent_min=-3)
+    rds_model = rds.RegressionEnrichmentSurface(percent_min=-3)
         rds_model.compute(trues, preds, samples=30)
         rds_model.plot(save_file=args.metric_plot_prefix + "rds_on_cell.png",
                        title='Regression Enrichment Surface (Avg over Unique Cells)')
@@ -23,7 +23,7 @@ To produced average plots over some stratification (useful for dose response lik
 .. code-block:: python
 
     trues, preds, labels = get_predicition_data()
-    rds_model = rds.RegressionDetectionSurface(percent_min=-3)
+    rds_model = rds.RegressionEnrichmentSurface(percent_min=-3)
         rds_model.compute(trues, preds, stratify=labels, samples=30)
         rds_model.plot(save_file=args.metric_plot_prefix + "rds_on_cell.png",
                        title='Regression Enrichment Surface (Avg over Unique Cells)')
