@@ -7,22 +7,22 @@ Under dev.
 # How to use
 Simple case:
 To produced average plots over some stratification (useful for dose response like data to produce results over types of cells for instance)
-```python
-trues, preds = get_predicition_data()
-rds_model = rds.RegressionDetectionSurface(percent_min=-3)
-    rds_model.compute(trues, preds, samples=30)
-    rds_model.plot(save_file=args.metric_plot_prefix + "rds_on_cell.png",
-                   title='Regression Enrichment Surface (Avg over Unique Cells)')
-```
+.. code-block:: python
+
+    trues, preds = get_predicition_data()
+    rds_model = rds.RegressionDetectionSurface(percent_min=-3)
+        rds_model.compute(trues, preds, samples=30)
+        rds_model.plot(save_file=args.metric_plot_prefix + "rds_on_cell.png",
+                       title='Regression Enrichment Surface (Avg over Unique Cells)')
+
 
 To produced average plots over some stratification (useful for dose response like data to produce results over types of cells for instance)
-```python
-trues, preds, labels = get_predicition_data()
-rds_model = rds.RegressionDetectionSurface(percent_min=-3)
-    rds_model.compute(trues, preds, stratify=labels, samples=30)
-    rds_model.plot(save_file=args.metric_plot_prefix + "rds_on_cell.png",
-                   title='Regression Enrichment Surface (Avg over Unique Cells)')
-```
+.. code-block:: python
+    trues, preds, labels = get_predicition_data()
+    rds_model = rds.RegressionDetectionSurface(percent_min=-3)
+        rds_model.compute(trues, preds, stratify=labels, samples=30)
+        rds_model.plot(save_file=args.metric_plot_prefix + "rds_on_cell.png",
+                       title='Regression Enrichment Surface (Avg over Unique Cells)')
 
 
 .. image:: https://img.shields.io/pypi/v/regression_enrichment_surface.svg
