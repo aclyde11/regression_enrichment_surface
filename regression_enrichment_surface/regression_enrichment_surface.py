@@ -1,5 +1,4 @@
 """Main module."""
-
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -35,7 +34,12 @@ def nefrcurve(points_, p, t, min_sample=-3, reverse_sort=False):
     return xx, yy, zz
 
 
-class RegressionDetectionSurface:
+class RegressionEnrichmentSurface:
+    """
+    This is a conceptual class representation of a simple BLE device (GATT Server). It is essentially an extended combination of the :class:`bluepy.btle.Peripheral` and :class:`bluepy.btle.ScanEntry` classes
+        :param percent_min: sets the axis bounds. Must be reasonable for your data size (i.e. cannot be data size 100 if you set -3)
+        :type client: int
+    """
 
     def __init__(self, percent_min=-3):
         self.min = percent_min
@@ -65,6 +69,14 @@ class RegressionDetectionSurface:
         return self.nefr
 
     def plot(self, save_file=None, levels=10, title="RDS", cmap='Blues', figsize=(8, 5)):
+        """Returns a list of :class:`bluepy.blte.Service` objects representing the services offered by the device. This will perform Bluetooth service discovery if this has not already been done; otherwise it will return a cached list of services immediately..
+
+                :param save_file: if None uses plt show otherwise saves png to file
+                :param levels: used for contour
+                :param title: sets plot title
+                :param cmap: uses matplotlib color maps
+                :param figsize: sets figure size
+                """
         plt.figure(figsize=figsize)
         plt.xscale("log")
         plt.yscale("log")

@@ -21,6 +21,7 @@ To produced average plots over some stratification (useful for dose response lik
 To produced average plots over some stratification (useful for dose response like data to produce results over types of cells for instance)
 
 .. code-block:: python
+
     trues, preds, labels = get_predicition_data()
     rds_model = rds.RegressionDetectionSurface(percent_min=-3)
         rds_model.compute(trues, preds, stratify=labels, samples=30)
