@@ -1,5 +1,5 @@
 Welcome to Regression Enrichment Surface's documentation!
-======================================
+=========================================================
 
 .. toctree::
    :maxdepth: 2
