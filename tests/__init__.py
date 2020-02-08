@@ -1,1 +1,1 @@
-"""Unit test package for regression_enrichment_surface."""
+"""Unit test package for Regression Enrichment Surface."""
