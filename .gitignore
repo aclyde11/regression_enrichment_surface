@@ -103,3 +103,9 @@ ENV/
 
 # IDE settings
 .vscode/
+
+# Misc
+!/regression_enrichment_surface.egg-info/
+!/docs/_build/
+!/docs/modules.rst
+!/docs/regression_enrichment_surface.rst
