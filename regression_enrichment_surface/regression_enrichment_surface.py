@@ -35,20 +35,20 @@ def get_enrichment(
     rankings with different cutoffs in the scale of [0, 1].
 
     :param ranked_indexes_true: the true/target ranked list of all the
-    indexes of drug candidates
+        indexes of drug candidates
     :type ranked_indexes_true: list, tuple, or other sequence of int
     :param ranked_indexes_pred: the predicted ranked list of all the indexes
-    of drug candidates
+        of drug candidates
     :type ranked_indexes_pred: list, tuple, or other sequence of int
     :param cutoff_true: cutoff percentage for the true/target ranked list (
-    from the top or index 0)
+        from the top or index 0)
     :type cutoff_true: float
     :param cutoff_pred: cutoff percentage for the predicted ranked list (
-    from the top or index 0)
+        from the top or index 0)
     :type cutoff_true: float
 
     :return: enrichment score indicating the similarity between two ranking
-    orders with given cutoffs for both
+        orders with given cutoffs for both
     :rtype: float
     """
 
@@ -111,22 +111,24 @@ def get_enrichment_grid(
     :param num_samples_per_axis: number of samples per axis in the grid
     :type num_samples_per_axis: int
     :param logspace_start: inclusive starting point (base**'logspace_start')
-    for logspace sampling, defaults to -3
+        for logspace sampling, defaults to -3
     :type logspace_start: int or float
     :param logspace_stop: inclusive stopping point (base**'logspace_stop')
-    for logspace sampling, defaults to 0
+        for logspace sampling, defaults to 0
     :type logspace_stop: int or float
     :param logspace_base: the exponential base of logspace sampling for
-    grid, defaults to 10
+        grid, defaults to 10
     :type logspace_base: int or float
     :param descending_ranking_order: descending ranking order option for
-    both predictions and true targets, defaults to False
+        both predictions and true targets, defaults to False
     :type descending_ranking_order: bool
 
     :return: tuple of three numpy arrays, all in the shape of
-    ('num_samples_per_axis', 'num_samples_per_axis'), containing the X and Y
-    coordinates, and the enrichment score for all the points on the grid
+        ('num_samples_per_axis', 'num_samples_per_axis'), containing
+        the X and Y  coordinates, and the enrichment score for all the
+        points on the grid
     :rtype: tuple of three numpy arrays
+
     """
 
     # sanity check for
@@ -218,28 +220,28 @@ class RegressionEnrichmentSurface:
         :param num_samples_per_axis: number of samples per axis in the grid
         :type num_samples_per_axis: int
         :param logspace_start: inclusive starting point (base**logspace_start)
-        for logspace sampling, defaults to -3
+            for logspace sampling, defaults to -3
         :type logspace_start: int or float
         :param logspace_stop: inclusive stopping point (base**logspace_stop)
-        for logspace sampling, defaults to 0
+            for logspace sampling, defaults to 0
         :type logspace_stop: int or float
         :param logspace_base: the exponential base of logspace sampling for
-        grid, defaults to 10
+            grid, defaults to 10
         :type logspace_base: int or float
         :param descending_ranking_order: descending ranking order option for
-        both predictions and true targets, defaults to False
+            both predictions and true targets, defaults to False
         :type descending_ranking_order: bool
         :param stratified_on: stratified labels for the samples, should be a
-        sequence of the same length as 'y_true' and 'y_pred', labeling
-        different predictions for multiple RES grids, defaults to None
+            sequence of the same length as 'y_true' and 'y_pred', labeling
+            different predictions for multiple RES grids, defaults to None
         :type stratified_on: sequence
 
         :return: tuple of three numpy arrays, all in the shape of
-        ('num_labels', 'num_samples_per_axis', 'num_samples_per_axis'),
-        containing the X and Y coordinates, and the enrichment score for
-        all the points on the grids. the 'num_labels' equals to the number
-        of unique labels in the sequence 'stratified_on', otherwise equals
-        to 1.
+            ('num_labels', 'num_samples_per_axis', 'num_samples_per_axis'),
+            containing the X and Y coordinates, and the enrichment score
+            for all the points on the grids. the 'num_labels' equals to the
+            number of unique labels in the sequence 'stratified_on',
+            otherwise equals to 1
         :rtype: tuple of three numpy arrays
         """
 
@@ -312,18 +314,18 @@ class RegressionEnrichmentSurface:
         contour plot.
 
         :param plot_size: size of the plot, represented by the width and
-        height in inches, defaults to (8, 5)
+            height in inches, defaults to (8, 5)
         :type plot_size: tuple of two int or float
         :param color_map: color map for the contour plot, defaults to 'Blues'
         :type color_map: string or matplotlib Colormap
         :param num_contour_levels: number of contour levels, defaults to 10
         :type num_contour_levels: int
         :param plot_title: title for the contour plot, defaults to
-        'Regression Enrichment Surface'
+            'Regression Enrichment Surface'
         :type plot_title: str
         :param plot_file_path: filepath for the contour plot. If given,
-        the plot will be directed saved to the path, otherwise the plot
-        will be shown. Defaults to None
+            the plot will be directed saved to the path, otherwise the
+            plot will be shown. Defaults to None
         :type plot_file_path: str
         """
 
