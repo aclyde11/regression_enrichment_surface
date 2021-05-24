@@ -2,6 +2,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+
 def erf(x_pred, x_true, r, y, indexs_pred, indexs_true):
     return len(
         set(indexs_pred[:int(r * indexs_pred.shape[0])]).intersection(set(indexs_true[:int(y * indexs_pred.shape[0])])))
@@ -35,11 +36,6 @@ def nefrcurve(points_, p, t, min_sample=-3, reverse_sort=False):
 
 
 class RegressionEnrichmentSurface:
-    """
-    This is a conceptual class representation of a simple BLE device (GATT Server). It is essentially an extended combination of the :class:`bluepy.btle.Peripheral` and :class:`bluepy.btle.ScanEntry` classes
-        :param percent_min: sets the axis bounds. Must be reasonable for your data size (i.e. cannot be data size 100 if you set -3)
-        :type client: int
-    """
 
     def __init__(self, percent_min=-3):
         self.min = percent_min
@@ -48,6 +44,7 @@ class RegressionEnrichmentSurface:
 
     def compute(self, trues, preds, stratify=None, samples=30):
         self.stratify = stratify is not None
+        self.samples = samples
         if not self.stratify:
             self.nefr = nefrcurve(samples, preds, trues, self.min)
         else:
@@ -58,7 +55,7 @@ class RegressionEnrichmentSurface:
                 preds_strat = preds[locs]
                 trues_strat = trues[locs]
                 try:
-                    x_2, y_2, z_2 = nefrcurve(30, preds_strat, trues_strat)
+                    x_2, y_2, z_2 = nefrcurve(samples, preds_strat, trues_strat)
                 except ZeroDivisionError:
                     continue
                 x.append(x_2)
@@ -68,15 +65,21 @@ class RegressionEnrichmentSurface:
 
         return self.nefr
 
-    def plot(self, save_file=None, levels=10, title="RDS", cmap='Blues', figsize=(8, 5)):
-        """Returns a list of :class:`bluepy.blte.Service` objects representing the services offered by the device. This will perform Bluetooth service discovery if this has not already been done; otherwise it will return a cached list of services immediately..
+    def compute_integral(self, uselog=True):
+        import scipy.integrate
+        assert not self.stratify  # not implemented yet
 
-                :param save_file: if None uses plt show otherwise saves png to file
-                :param levels: used for contour
-                :param title: sets plot title
-                :param cmap: uses matplotlib color maps
-                :param figsize: sets figure size
-                """
+        X, Y, Z = self.nefr[0], self.nefr[1], self.nefr[2]
+        if uselog:
+            Y = np.log(Y[:self.samples, 0].flatten())
+            X = np.log(X[0, :self.samples].flatten())
+            Y /= np.abs(Y.min())
+            X /= np.abs(X.min())
+
+        result = scipy.integrate.simps(scipy.integrate.simps(Z, Y), X)
+        return result
+
+    def plot(self, save_file=None, levels=10, title="RES", cmap='Blues', figsize=(8, 5)):
         plt.figure(figsize=figsize)
         plt.xscale("log")
         plt.yscale("log")
